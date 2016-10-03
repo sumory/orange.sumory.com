@@ -1,0 +1,97 @@
+---
+title: Documentation
+permalink: /docs/
+excerpt: Guides and API reference documentation for the latest Orange release.
+redirect_from:
+  - /docs/v0.3.0/
+  - /docs/v0.4.0/
+  - /docs/v0.5.0/
+  - /docs/latest/
+layout: default
+---
+
+{% assign docs = site.docs | sort: 'sort_title' %}
+
+<div class='subtron'>
+  <div class='container-narrow'>
+    <h1><span class="mr-3 mr-lg-4">Orange Documentation</span><span class="docs-version">{{ site.latest_version }}</span></h1>
+    <p class="lead mb-3">
+      See all of the <a href="{{ site.baseurl }}/docs/all/">docs on one page</a>.
+    </p>
+  </div>
+</div>
+
+<section class='page-section'>
+  <div class='container'>
+    <div class="grid">
+      <div class="row">
+
+        <div class="col-ms-12 col-lg-4">
+          <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/guides/"><span class="mega-octicon octicon-book pr-3"></span>Guides</a></h2>
+          <ul class="docs-list">
+          {% for doc in docs %}
+            {% if doc.category == 'Guides' %}
+              <li>
+                <a href="{{ site.baseurl }}{{ doc.url }}">{{ doc.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+
+
+          <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/concept/"><span class="mega-octicon octicon-book pr-3"></span>Concept</a></h2>
+          <ul class="docs-list">
+          {% for doc in docs %}
+            {% if doc.category == 'Concept' %}
+              <li>
+                <a href="{{ site.baseurl }}{{ doc.url }}">{{ doc.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+
+        <div class="col-ms-12 col-lg-4">
+          <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/api/"><span class="mega-octicon octicon-gear pr-3"></span>API Reference</a></h2>
+            <h4>全局API</h4>
+            <ul class="docs-list">
+            {% for doc in docs %}
+              {% if doc.category == 'API' and doc.flag == '1' %}
+              <li>
+                <a href="{{ site.baseurl }}{{ doc.url }}">{{ doc.title }}</a>
+              </li>
+              {% endif %}
+            {% endfor %}
+            </ul>
+            <h4>插件API</h4>
+            <ul class="docs-list">
+            {% for doc in docs %}
+              {% if doc.category == 'API' and doc.flag == '2' %}
+              <li>
+                <a href="{{ site.baseurl }}{{ doc.url }}">{{ doc.title }}</a>
+              </li>
+              {% endif %}
+            {% endfor %}
+            </ul>
+            
+          </ul>
+        </div>
+
+        <div class="col-ms-12 col-lg-4">
+          <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/advanced/"><span class="mega-octicon octicon-tools pr-3"></span>Advanced</a></h2>
+          <ul class="docs-list">
+          {% for doc in docs %}
+            {% if doc.category == 'Advanced' %}
+              <li>
+                <a href="{{ site.baseurl }}{{ doc.url }}">{{ doc.title }}</a>
+                <!-- <span class="excerpt">{{ doc.content | strip_html | truncatewords: 50 }}</span> -->
+              </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

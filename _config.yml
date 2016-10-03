@@ -1,0 +1,43 @@
+title: Orange
+email: sumory.wu@gmail.com
+description: 'A Gateway based on OpenResty or Nginx for API Monitoring and Management'
+url: 'http://orange.sumory.com'
+github_username: sumory
+future: true
+excerpt_separator: '---'
+gems:
+    - jekyll-redirect-from
+    - jekyll-sitemap
+    - jekyll-seo-tag
+    - jekyll-feed
+    - jemoji
+latest_version: 0.4.0
+release_date: 2016.09.24
+sass:
+    style: compressed
+available_versions:
+    - v0.0.2
+    - v0.1.0
+    - v0.1.1
+    - v0.2.0
+    - v0.3.0
+    - v0.4.0
+collections:
+    docs: {output: true, permalink: '/docs/:path/'}
+defaults:
+    - {scope: {type: docs}, values: {layout: docs}}
+    - {scope: {type: posts}, values: {layout: post, permalink: '/blog/:year/:month/:day/:title'}}
+exclude:
+    - node_modules
+    - README.md
+    - LICENSE.md
+    - CNAME
+    - Gemfile
+    - Gemfile.lock
+    - Gruntfile.js
+    - package.json
+    - script
+    - spec
+include:
+    - _pages
+logo: /images/logo.png

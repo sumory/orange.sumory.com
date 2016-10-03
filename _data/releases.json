@@ -1,0 +1,79 @@
+[
+  {
+    "url": "https://github.com/sumory/orange",
+    "html_url": "/releases/#v0.4.0",
+    "tag_name": "v0.4.0",
+    "name": "orange v0.4.0",
+    "created_at": "2016-09-24",
+    "body": "\r\n
+    * 删除examples\r\n
+    * 添加key auth插件\r\n
+    * 添加限流插件rate limiting\r\n
+    * 补全新插件API文档\r\n
+    ",
+    "version": "v0.4.0"
+  },
+  {
+    "url": "https://github.com/sumory/orange",
+    "html_url": "/releases/#v0.3.0",
+    "tag_name": "v0.3.0",
+    "name": "orange v0.3.0",
+    "created_at": "2016-07-21",
+    "body": "\r\n
+    * 添加HTTP Basic Auth插件\r\n
+    ",
+    "version": "v0.3.0"
+  },
+  {
+    "url": "https://github.com/sumory/orange",
+    "html_url": "/releases/#v0.2.0",
+    "tag_name": "v0.2.0",
+    "name": "orange v0.2.0",
+    "created_at": "2016-06-11",
+    "body": "\r\n
+    * API Server支持HTTP Basic Authorization\r\n
+    * 变量提取模块增加新类型\r\n
+    * 去除file store支持\r\n
+    * 提供Restful API及详细描述文档\r\n
+    * 分离内置的Dashboard，减少与API的耦合\r\n
+    ",
+    "version": "v0.2.0"
+  },
+  {
+    "url": "https://github.com/sumory/orange",
+    "html_url": "/releases/#v0.1.1",
+    "tag_name": "v0.1.1",
+    "name": "orange v0.1.1",
+    "created_at": "2016-05-09",
+    "body": "\r\n
+    * 在使用MySQL作为存储时，为dashboard控制台添加账户系统\r\n
+    ",
+    "version": "v0.1.1"
+  },
+  {
+    "url": "https://github.com/sumory/orange",
+    "html_url": "/releases/#v0.1.0",
+    "tag_name": "v0.1.0",
+    "name": "orange v0.1.0",
+    "created_at": "2016-05-04",
+    "body": "\r\n
+    * 配置项支持文件存储和MySQL存储\r\n
+    * 通过MySQL存储来简单支持集群部署\r\n
+    * 支持通过自定义插件方式扩展功能\r\n
+    * 默认内置六个插件\r\n
+    * 提供管理界面用于管理内置插件\r\n
+    ",
+    "version": "v0.1.0"
+  },
+  {
+    "url": "https://github.com/sumory/orange",
+    "html_url": "/releases/#v0.1.0",
+    "tag_name": "v0.0.2",
+    "name": "orange v0.0.2",
+    "created_at": "2016-04-20",
+    "body": "\r\n
+    * 完成原型设计\r\n
+    ",
+    "version": "v0.0.2"
+  }
+]

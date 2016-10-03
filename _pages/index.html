@@ -1,0 +1,80 @@
+---
+permalink: /
+layout: default
+---
+
+  <script src="{{ site.baseurl }}/js/vendor/ua-parser-js-0.7.10.js"></script>
+  <script src="{{ site.baseurl }}/js/update-download-link.js"></script>
+
+  <div class="jumbotron jumbotron-home text-center">
+    <div class="container">
+      {% include hero.html %}
+      <p class='jumbotron-lead'>A Gateway based on OpenResty or Nginx
+        <span class='jumbotron-lead-muted'>for API Monitoring and Management</span>
+      </p>
+
+      <div class="banner-share"><!-- GitHub Star -->
+        <iframe src="https://ghbtns.com/github-btn.html?user=sumory&amp;repo=orange&amp;type=star&amp;count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+        <!-- GitHub fork -->
+        <iframe src="https://ghbtns.com/github-btn.html?user=sumory&amp;repo=orange&amp;type=fork&amp;count=true" frameborder="0" scrolling="0" width="90px" height="20px"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="subtron py-4 text-center">
+    <div class="container">
+      <div id="electron-versions" class="electron-versions">
+        <span class="electron-versions-main">Version: <strong>{{ site.latest_version }}</strong></span>
+        <span>Release Date: <strong>{{ site.release_date }}</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <section class="page-section page-section-spacious" id='electron'>
+    <div class="container-narrow" style="max-width:900px;">
+      <div class="row text-center text-small">
+        <div class="col-xs-12 col-sm-3">
+          <h3 class="mb-2 mt-0">Default Dashboard & Open Source API</h3>
+          <p>A default Dashboard is given for management and all <strong>APIs</strong> are open source for building
+          3rd-party applications.</p>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <h3 class="mb-2 mt-0">Custom Plugin Support</h3>
+          <p>In addition to the built-in plugins, we can extend the functionality of Orange as we want with the plugin mechanism.</p>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <h3 class="mb-2 mt-0">Traffic Identification & Variable Extraction</h3>
+          <p>Traffic can be recognised with more than 8 conditions. And a powerful means is offered to extract variables for later usage.</p>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <h3 class="mb-2 mt-0">Simple Cluster Support</h3>
+          <p>Orange nodes share config with MySQL. Besides, we can sufficiently utilize the API to manage all Orange nodes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class='page-section page-section-spacious bg-shade' id='get-started'>
+    <div class='container-narrow text-center'>
+      <h3 class="mb-3">Easy Installation and Usages</h3>
+      <figure class="highlight highlight-dark text-left my-4">
+<pre><code>
+<span class="c1"># Clone the Quick Start repository</span>
+$ git clone https://github.com/sumory/orange
+
+<span class="c1"># Go into the repository</span>
+$ cd orange
+
+<span class="c1"># Install it, need version >= v0.5.0</span>
+$ make install 
+
+<span class="c1"># Check for usages, need version >= v0.5.0</span>
+$ orange help
+</code></pre>
+      </figure>
+   
+    </div>
+  </section>
+
+  

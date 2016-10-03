@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<div class='subtron'>
+  <div class='container-narrow'>
+    <h1>Orange Releases</h1>
+    <p>
+      {% for release in site.data.releases %}
+      <a class='releases-tag' href='#{{ release.version }}'>{{ release.version }}</a>
+      {% endfor releases %}
+    </p>
+   
+  </div>
+</div>
+
+<section class='page-section'>
+  <div class='container-narrow'>
+
+    <div class="releases">
+      {{ content }}
+    </div>
+
+    <div class="text-center">
+      <a href="https://github.com/sumory/orange/releases" target="_blank"><span class="octicon octicon-tag mr-1"></span>All Releases</a>
+      <a class="ml-4" href="#"><span class="octicon octicon-arrow-up mr-1"></span>Back to index</a>
+    </div>
+  </div>
+</section>
