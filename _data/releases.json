@@ -1,4 +1,18 @@
 [
+   {
+    "url": "https://github.com/sumory/orange",
+    "html_url": "/releases/#v0.5.0",
+    "tag_name": "v0.5.0",
+    "name": "orange v0.5.0",
+    "created_at": "2016-10-04",
+    "body": "\r\n
+    * 添加`Makefile`安装方式\r\n
+    * 增加一个新的命令行工具`orange`(通过resty-cli实现）\r\n
+    * 支持通过命令行`orange store`初始化数据库\r\n
+    * Break Change: 将*.conf配置移动到conf目录下\r\n
+    ",
+    "version": "v0.5.0"
+  },
   {
     "url": "https://github.com/sumory/orange",
     "html_url": "/releases/#v0.4.0",
