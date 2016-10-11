@@ -1,9 +1,12 @@
 <header class="site-header">
   <div class="container">
 
-    <a class="site-header-logo no-underline-hover" href="{{ site.baseurl }}/">
-      <span style="font-weight:700;">Orange</span>
-    </a>
+    <div class="site-header-logo no-underline-hover" style="float: left;">
+      <a class="logo-link" href="{{ site.baseurl }}/">
+        <img src="/images/logo.png">
+        <span>Orange</span>
+      </a>
+    </div>
 
     <nav class="site-header-nav">
       {% capture first_segment %}{{ page.url | remove_first: "/" | split: "/" | first }}{% endcapture %}
