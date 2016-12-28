@@ -12,28 +12,31 @@ sort_title: "1"
 
 ### 关于
 
-Orange是一个基于OpenResty的API Gateway，提供API及自定义[规则](/docs/rule.html)的监控和管理，如访问统计、流量切分、API重定向、API鉴权、WEB防火墙等功能。它有以下特性：
+Orange是一个基于OpenResty的API Gateway，提供API及自定义[规则](/docs/rule.html)的监控和管理，如访问统计、流量切分、API重定向、API鉴权、WEB防火墙等功能。Orange可用来替代前置机中广泛使用的Nginx/OpenResty， 在应用服务上无痛前置一个功能丰富的网关系统。它有以下特性：
 
+- 动态更新Nginx/OpenResty配置而无需重启或reload
 - 通过MySQL存储来简单支持集群部署
 - 支持多种[条件匹配和变量提取](/docs/expression.html)
 - 支持通过自定义插件方式扩展功能
-- 默认内置的插件
+- 内置多个通用插件
     - 全局状态统计
     - 自定义监控
     - URL重写
     - URI重定向
-    - 访问速度控制Rate Limiting
+    - 访问限速
     - HTTP Basic Auth
     - HTTP Key Auth
     - 简单防火墙WAF
     - 代理、ABTesting、分流
-- 提供管理界面用于管理内置插件
-- 开放API: 灵活配置插件、查看运行状态、统计数据等
+    - Shared Dict存取接口
+- 提供Dashboard用于管理内置插件
+- 开放API: 所有插件均开放API供第三方使用， 通过这些API可简单灵活得配置插件、查看运行状态、统计数据等。
+- 架构简单，依赖少，许可协议宽松，适合直接二次开发或改造。
 
 
 ### API
 
-内置插件以HTTP Restful形式开放全部API，详细可查看[API文档](http://orange.sumory.com/plugin/)
+内置插件以HTTP Restful形式开放全部API，详细可查看[API文档](/docs/api/)
 
 
 ### 注意

@@ -1,13 +1,12 @@
 ---
 category: Guides
 redirect_from:
-    - /docs/v0.4.0/guides/usages/
     - /docs/latest/guides/usages/
 title: "使用场景"
 sort_title: "2"
 ---
 
-Orange是基于插件设计的，基本思想是通过实现各种插件灵活的在Nginx的各个执行阶段进行逻辑处理。
+Orange是基于插件设计的，基本思想是通过实现各种插件灵活的在Nginx/OpenResty的各个执行阶段进行逻辑处理。
 
 Orange提供的默认插件功能如下：
 
@@ -51,9 +50,13 @@ Orange提供的默认插件功能如下：
  - 为了使用方便，内部的一些通用API是不需要鉴权的，但当需要排查问题的时候，如果有多个使用方，很难甄别到底是谁调用的
 
 Orange提供的WAF插件可以解决这个问题：
- 
+
  - 如对API请求做白名单限制，白名单可以以比较常用的IP、Header作为判断条件
  - Orange提供的默认插件都有Log功能，可将某条匹配规则的Log开启，这样出现问题时就可以根据匹配规则的Log，然后结合Nginx本身的访问日志来甄别流量来源了
+
+此外， Orange还提供了HTTP Basic Authorization和Key Authorization来对API进行动态鉴权
+
+ - 可动态的给API增加credentials准入机制， 如果开启了log， 还可追踪具体的credential是如何使用的
 
 
 ### Case 3

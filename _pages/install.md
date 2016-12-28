@@ -7,9 +7,9 @@ layout: simple
 #### 安装依赖
 
 - OpenResty: 版本应在1.9.7.3+
-- [lor](https://github.com/sumory/lor)框架: 版本在v0.1.4+
+- [lor](https://github.com/sumory/lor)框架: 版本在v0.2.5+
     - git clone https://github.com/sumory/lor
-    - cd lor & sh install.sh
+    - cd lor && sh install.sh
 - libuuid.so
     - Orange依赖libuuid生成uuid
     - centos用户可通过命令`yum install libuuid-devel`安装，其它情况请自行google
@@ -19,7 +19,7 @@ layout: simple
 #### 数据表导入MySQL
 
 - 在MySQL中创建数据库，名为orange
-- 将与当前代码版本配套的SQL脚本(如install/orange-v0.5.0.sql)导入到orange库中
+- 将与当前代码版本配套的SQL脚本(如install/orange-v0.6.0.sql)导入到orange库中
 
 #### 修改配置文件
 
@@ -30,15 +30,16 @@ orange.conf的配置如下，请按需修改:
 ```javascript
 {
     "plugins": [ //可用的插件列表，若不需要可从中删除，系统将自动加载这些插件的开放API并在7777端口暴露
-        "stat", 
-        "monitor", 
-        "redirect", 
+        "stat",
+        "monitor",
+        "redirect",
         "rewrite",
         "rate_limiting",
         "basic_auth",
         "key_auth",
-        "waf", 
-        "divide"
+        "waf",
+        "divide",
+        "kvstore"
     ],
 
     "store": "mysql",//目前仅支持mysql存储
@@ -104,7 +105,7 @@ conf/nginx.conf里是一些nginx相关配置，请自行检查并按照实际需
 
 除此之外， 从v0.5.0开始， 如果执行过`make install`将Orange安装到系统后， 还可以通过`orange`命令来管理， 执行`orange help`查看有哪些命令可以使用：
 
-```
+```bash
 Usage: orange COMMAND [OPTIONS]
 
 The commands are:

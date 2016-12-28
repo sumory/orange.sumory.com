@@ -1,12 +1,24 @@
 ---
 category: Guides
 redirect_from:
-    - /docs/v0.4.0/guides/issues/
     - /docs/latest/guides/issues/
 title: "常见问题"
 sort_title: "3"
 ---
 
+
+#### Orange是否支持集群？
+
+- Orange支持集群部署， 但并没有耦合诸如服务自动注册、发现的功能， 如有需求可使用Consul、 ETCD、 zookeeper等来实现。
+- Orange的配置均存储于MySQL中, Orange节点内部状态（如连接信息、吞吐量、url访问状况、插件配置缓存等）存储在shared dict中。
+- 在通过Dashboard或者API更新了一个Orange节点的配置后， 可通过以下三种方式来将配置同步到其他Orange节点
+    - 重启其他Orange节点， 重启时会从MySQL拉取一遍全新的配置。
+    - 通过在其他Orange节点的Dashboard上点击“同步配置”按钮来从MySQL中更新对应插件的最新配置。
+    - 通过调用其他节点的`同步API`来更新最新配置。
+
+#### 提示`resty`或`nginx`命令找不到
+
+Orange提供的默认脚本以及`orange` cli工具依赖`resty`和`nginx`命令， `resty`和`nginx`命令都是在安装OpenResty时安装的， 如果使用过程中提示找不到， 应该将这两个命令加入到环境变量中。
 
 #### Orange依赖的OpenResty版本是多少？
 
@@ -15,7 +27,7 @@ Orange的监控插件需要统计http的某些状态数据，所以需要编译O
 
 #### start.sh脚本无法启动
 
-检查OpenResty和lor是否安装成功。命令行要能直接执行`Nginx -v`和`lord -v`，并且Orange依赖的OpenResty版本应在1.9.7.3++，lor版本在v0.1.0+
+检查OpenResty和lor是否安装成功。命令行要能直接执行`Nginx -v`和`lord -v`，并且Orange依赖的OpenResty版本应在1.9.7.3++，lor版本在v0.2.5+（建议使用的最低lor版本为v0.1.4, 如无特别需求请升级到最新的lor版本）
 
 #### 找不到libuuid.so
 
