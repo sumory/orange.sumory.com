@@ -1,27 +1,27 @@
 ---
-title: Orange Installation
+title: Orange 安装
 permalink: /install/
 layout: simple
 ---
 
-#### 安装依赖
+### 安装依赖
 
 - OpenResty: 版本应在1.9.7.3+
-- [lor](https://github.com/sumory/lor)框架: 版本在v0.2.5+
-    - git clone https://github.com/sumory/lor
-    - cd lor && sh install.sh
-- libuuid.so
-    - Orange依赖libuuid生成uuid
-    - centos用户可通过命令`yum install libuuid-devel`安装，其它情况请自行google
+    - Orange的监控插件需要统计http的某些状态数据，所以需要编译OpenResty时添加`--with-http_stub_status_module`
+    - 由于使用了*_block指令，所以OpenResty的版本最好在1.9.7.3以上.
+    - 在OpenResty安装好后需要将`nginx`和`resty`命令配置到**环境变量**中， 使用`nginx -v`和`resty -v`能正常输出。
+- [lor](https://github.com/sumory/lor)框架
+    - 若使用的Orange版本低于v0.6.2则应安装lor v0.2.*版本
+    - 若使用的Orange版本高于或等于v0.6.2则应安装lor v0.3.0+版本
 - MySQL
-    - 配置存储和集群扩展需要MySQL支持。从0.2.0版本开始，Orange去除了本地文件存储的方式，目前仅提供MySQL存储支持.
+    - 配置存储和集群扩展需要MySQL支持。
 
-#### 数据表导入MySQL
+### 数据表导入MySQL
 
 - 在MySQL中创建数据库，名为orange
-- 将与当前代码版本配套的SQL脚本(如install/orange-v0.6.0.sql)导入到orange库中
+- 将与当前代码版本配套的SQL脚本(如install/orange-v0.6.3.sql)导入到orange库中； 如果需要从低版本升级到最新版，请自行对比版本间SQL脚本差异
 
-#### 修改配置文件
+### 修改配置文件
 
 Orange有**两个**配置文件，一个是`conf/orange.conf`，用于配置插件、存储方式和内部集成的默认Dashboard，另一个是`conf/nginx.conf`用于配置Nginx(OpenResty).
 
@@ -35,8 +35,10 @@ orange.conf的配置如下，请按需修改:
         "redirect",
         "rewrite",
         "rate_limiting",
+        "property_rate_limiting",
         "basic_auth",
         "key_auth",
+        "signature_auth",
         "waf",
         "divide",
         "kvstore"
@@ -88,22 +90,22 @@ conf/nginx.conf里是一些nginx相关配置，请自行检查并按照实际需
 - 各个server或是location的权限，如是否需要通过`allow/deny`指定配置黑白名单ip
 
 
-#### 安装
+### 安装
 
-如果使用的是v0.5.0以前的版本则无需安装， 只要将Orange下载下来放到合适的位置即可。
+- 在根据上文配置各种环境后， Orange无需“安装”即可使用
+    - 默认的， 源码里提供了`start.sh`用来启动Orange
+    - 本质上只要启动Nginx/OpenResty并根据默认的配置文件来加载Orange配置即可启动Orange
+    - 用户可自行参考`start.sh`编写符合自己需要的类似脚本
+- 此外， 如果有需要将Orange放到其他路径， 可通过`make install`来**安装**。 执行此命令后， 以下两部分将被安装：
 
-如果使用的是v0.5.0及以上的版本， 可以通过`make install`将Orange安装到系统中。 执行此命令后， 以下两部分将被安装：
-
+```bash
+/usr/local/orange     #orange运行时需要的lua文件
+/usr/local/bin/orange #orange命令行工具, 依赖`resty`命令
 ```
-/usr/local/orange     #orange运行时需要的文件
-/usr/local/bin/orange #orange命令行工具
-```
 
-#### 启动
+### 验证是否安装成功
 
-在v0.5.0以下版本中， 一个简单的shell脚本用来启动/重启orange, 执行`sh start.sh`即可。可以按需要仿照start.sh编写运维脚本， 本质上就是启动/关闭Nginx。
-
-除此之外， 从v0.5.0开始， 如果执行过`make install`将Orange安装到系统后， 还可以通过`orange`命令来管理， 执行`orange help`查看有哪些命令可以使用：
+如已使用Makefile安装Orange， 则执行`orange help`查看有哪些命令可以使用：
 
 ```bash
 Usage: orange COMMAND [OPTIONS]
@@ -119,8 +121,9 @@ version Show the version of Orange
 help    Show help tips
 ```
 
-
-Orange启动成功后， dashboard和API server也随之启动：
+根据以上两种方式选择使用`sh start.sh`或`orange start`来启动Orange。 Orange启动成功后， Dashboard和API server也随之启动：
 
 - 内置的Dashboard可通过`http://localhost:9999`访问
 - API Server默认在`7777`端口监听，如不需要API Server可删除nginx.conf里对应的配置
+
+

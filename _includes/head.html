@@ -5,7 +5,7 @@
 
     <meta content='#2f3241' name='theme-color' />
     <link rel='shortcut icon' href='{{ site.baseurl }}/images/favicon.ico'/>
-    <link rel='stylesheet' href='{{ site.baseurl }}/css/index.css'>
+    <link rel='stylesheet' href='{{ site.baseurl }}/css/index.css?v=0.6'>
 
     {% seo %}
     {% feed_meta %}
@@ -14,7 +14,7 @@
 
     <style>
         .site-header {
-            color: #74b1be;
+            color: #fcfcfc;
             background-color: #2a2c38;
             border-bottom-color: #1a1b23;
             -webkit-font-smoothing: antialiased;
@@ -104,8 +104,7 @@
             margin-left: 1%;
             margin-bottom: 10px;
             position: relative;
-            min-height: 220px;
-            max-width: 240px;
+            min-height: 210px;
             padding-right: 15px;
             padding-left: 15px;
             float: left;
@@ -119,9 +118,15 @@
             box-shadow: 0 1px 2px rgba(0,0,0,0.05),0 5px 10px rgba(0,0,0,0.05);
         }
 
+        #feature-part .col-sm-3 p{
+            margin-top: 10px;
+            margin-bottom:0px;
+            text-align: left;
+        }
+
         @media (min-width: 1300px) {
             .page-section-spacious {
-                padding: 50px 96px;
+                padding: 96px 96px;
             }
         }
     </style>

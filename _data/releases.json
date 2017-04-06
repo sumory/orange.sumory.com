@@ -1,4 +1,42 @@
 [
+
+    {
+    "url": "https://github.com/sumory/orange",
+    "html_url": "/releases/#v0.6.3",
+    "tag_name": "v0.6.3",
+    "name": "orange v0.6.3",
+    "created_at": "2017-03-10",
+    "body": "\r\n
+    * 添加插件： signature auth plugin\r\n
+    * 将默认的配置文件做成模板，即ngingx.conf.example和orange.conf.example\r\n
+    ",
+    "version": "v0.6.3"
+  },
+  {
+    "url": "https://github.com/sumory/orange",
+    "html_url": "/releases/#v0.6.2",
+    "tag_name": "v0.6.2",
+    "name": "orange v0.6.2",
+    "created_at": "2017-02-18",
+    "body": "\r\n
+    * 兼容Orange与最新版本的<a href='https://github.com/sumory/lor'>lor</a>, 即lor v0.3.0\r\n
+    * 注意: \r\n
+      * 若使用的Orange版本在0.6.2以下，则应安装lor v0.2.*版本, 推荐lor v0.2.6\r\n
+      * 若使用的Orange版本在0.6.2及以上，可升级lor到v0.3.0+版本
+    ",
+    "version": "v0.6.2"
+  },
+  {
+    "url": "https://github.com/sumory/orange",
+    "html_url": "/releases/#v0.6.1",
+    "tag_name": "v0.6.1",
+    "name": "orange v0.6.1",
+    "created_at": "2017-02-09",
+    "body": "\r\n
+    * 添加property based rate limiting插件，该插件由@noname007贡献
+    ",
+    "version": "v0.6.1"
+  },
   {
     "url": "https://github.com/sumory/orange",
     "html_url": "/releases/#v0.6.0",

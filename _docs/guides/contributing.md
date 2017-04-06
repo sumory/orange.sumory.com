@@ -38,16 +38,17 @@ sort_title: "5"
 - 在收到PR时会第一时间审核并Merge你的改动，请确保改动的地方不存在排版等问题
 
 
-## 问题反馈
+### 问题反馈
 
 在使用`Orange`过程中碰到任何问题，可以到 [GitHub](https://github.com/sumory/orange/issues) 上提问
 
 
 
-## 贡献者
+### 贡献者
 
 排名不分先后。
 
-- [sumory](https://github.com/sumory)
-- [syhily](https://github.com/syhily)
-- [lhmwzy](https://github.com/lhmwzy)
+- [@syhily](https://github.com/syhily)
+- [@lhmwzy](https://github.com/lhmwzy)
+- [@spacewander](https://github.com/spacewander)
+- [@noname007](https://github.com/noname007)

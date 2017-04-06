@@ -3,309 +3,541 @@ category: API
 redirect_from:
     - /docs/latest/api/redirect/
 title: "URL重定向"
-sort_title: "3"
+sort_title: "103"
 flag: "2"
 ---
 
 
+URL重定向： 将请求redirect到其它网址
 
-#### 1) 开启或关闭此插件
 
-**请求**
+### 1) 开启或关闭此插件
 
-URI                 | Method 
-------------------- | ---- 
+#### 请求方式
+
+URI                 | Method
+------------------- | ----
 /redirect/enable     | Post
 
-**参数** 
+#### 参数
 
 名称 | 类型 | 说明
 ---- | ---- | -------
 enable | int | 0关闭1开启
 
 
-**返回结果** 
+#### 返回结果
 
-```
+```json
 {
-    "msg":"关闭成功",
+    "msg":"succeed to disable plugin",
     "success":true
 }
 ```
 
-#### 2) 获取所有配置信息
+### 2) 获取所有配置信息
 
-**请求**
+#### 请求方式
 
-URI                 | Method 
-------------------- | ---- 
-/redirect/configs    | Get
+URI                 | Method
+------------------- | ----
+/redirect/config    | Get
 
 
-**参数**   
-无 
+#### 参数
+无
 
-**返回结果** 
+#### 返回结果
 
+```json
+{
+  "msg": "succeed to get configuration in this node",
+  "data": {
+    "enable": true,
+    "selectors": [
+      {
+        "enable": false,
+        "id": "1C4A9916-B3BD-4E95-8108-3FBCFF08BEBD",
+        "time": "2016-11-13 17:14:32",
+        "handle": {
+          "log": false,
+          "continue": true
+        },
+        "type": 0,
+        "judge": [],
+        "name": "全流量选择器",
+        "rules": [
+          {
+            "enable": true,
+            "handle": {
+              "trim_qs": true,
+              "redirect_status": "301",
+              "url_tmpl": "https://www.baidu.com/s?wd={{query.search}}",
+              "log": true
+            },
+            "id": "a6451360-efab-41e1-968b-dc95fb479c39",
+            "judge": {
+              "type": 2,
+              "conditions": [
+                {
+                  "type": "URI",
+                  "operator": "match",
+                  "value": "/to_baidu"
+                },
+                {
+                  "type": "Query",
+                  "operator": "=",
+                  "name": "to_baidu",
+                  "value": "1"
+                }
+              ]
+            },
+            "time": "2017-04-06 19:28:43",
+            "name": "将/to_baidu重定向到baidu.com",
+            "extractor": {
+              "type": 2,
+              "extractions": [
+                {
+                  "type": "Query",
+                  "name": "search"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "success": true
+}
 ```
+
+
+
+### 3） 获取选择器信息
+
+
+#### 请求方式
+
+URI                 | Method | 说明
+------------------- | ------ | -----
+/redirect/selectors    | Get    | Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+
+
+#### 参数
+
+无
+
+#### 返回结果
+
+```json
+{
+  "data": {
+    "enable": true,
+    "meta": {
+      "selectors": [
+        "1C4A9916-B3BD-4E95-8108-3FBCFF08BEBD"
+      ]
+    },
+    "selectors": {
+      "1C4A9916-B3BD-4E95-8108-3FBCFF08BEBD": {
+        "enable": false,
+        "id": "1C4A9916-B3BD-4E95-8108-3FBCFF08BEBD",
+        "time": "2016-11-13 17:14:32",
+        "handle": {
+          "log": false,
+          "continue": true
+        },
+        "type": 0,
+        "judge": [],
+        "name": "全流量选择器",
+        "rules": [
+          "a6451360-efab-41e1-968b-dc95fb479c39"
+        ]
+      }
+    }
+  },
+  "success": true
+}
+```
+
+### 4） 创建选择器
+
+
+#### 请求方式
+
+URI                 | Method | 说明
+------------------- | ------ | -----
+/redirect/selectors    | Post    | Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+
+
+#### 参数
+
+名称 | 类型 | 说明
+---- | ---- | -------
+selector | string | 要创建的选择器的详细信息
+
+示例（创建一个筛选出所有访问abc.com的流量， 则参数selector的值应为如下字符串）：
+
+```json
+{
+    "name": "筛选abc.com的流量",
+    "type": 1,
+    "judge": {
+        "type": 0,
+        "conditions": [
+            {
+                "type": "Host",
+                "operator": "=",
+                "value": "abc.com"
+            }
+        ]
+    },
+    "handle": {
+        "continue": true,
+        "log": false
+    },
+    "enable": true
+}
+```
+
+#### 返回结果
+
+```json
+{"msg":"succeed to create selector","success":true} //失败时success为false
+```
+
+
+### 5） 修改选择器信息
+
+
+#### 请求方式
+
+URI                 | Method | 说明
+------------------- | ------ | -----
+/redirect/selectors    | Put    | Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+
+
+#### 参数
+
+名称 | 类型 | 说明
+---- | ---- | -------
+selector | string | 要修改后的选择器的详细信息
+
+示例（我们把上文中创建的选择器做下修改，添加一个过滤条件， 参数selector的值应为如下字符串）：
+
+```json
+{
+    "name": "过滤abc.com流量下URI以/user开始的流量",
+    "type": 1,
+    "judge": {
+        "type": 1,
+        "conditions": [
+            {
+                "type": "Host",
+                "operator": "=",
+                "value": "abc.com"
+            },
+            {
+                "type": "URI",
+                "operator": "match",
+                "value": "^/user"
+            }
+        ]
+    },
+    "handle": {
+        "continue": true,
+        "log": false
+    },
+    "enable": true,
+    "id": "b7af8982-11a4-44f9-8777-8a35ef56fa75"
+}
+```
+
+#### 返回结果
+
+```json
+{"msg":"succeed to update selector","success":true} //失败时success为false
+```
+
+
+### 6) 删除选择器
+
+
+#### 请求方式
+
+URI                 | Method | 说明
+------------------- | ------ | -----
+/redirect/selectors    | Delete    | Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+
+
+#### 参数
+
+名称 | 类型 | 说明
+---- | ---- | -------
+selector_id | string | 要删除的选择器id
+
+
+#### 返回结果
+
+```json
 {
     "success": true,
-    "data": {
-        "enable": true, //该插件是否开启
-        "rules": [ //该插件下的规则列表
+    "msg": "succeed to delete selector"
+}
+```
+
+### 7) 添加规则
+
+
+#### 请求方式
+
+URI                 | Method | 说明
+------------------- | ------ | -----
+/redirect/selectors/:id/rules    | Post    | Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+
+
+#### 参数
+
+名称 | 类型 | 说明
+---- | ---- | -------
+selector_id | string | 此参数从URI里获取，即：id属性， 表示在该选择器下添加规则
+rule | string | 该参数从form data表单里获取， 表示要添加的rule的字符串
+
+
+示例（将/to_baidu重定向到baidu.com）：
+
+```json
+{
+    "name": "将/to_baidu重定向到baidu.com",
+    "judge": {
+        "type": 0,
+        "conditions": [
             {
-                "enable": true, //此条规则是否开启
-                "id": "3666DE3C-6202-4971-B277-1214AA1B9CA3", //此条规则的id
-                "judge": { // "条件判断模块"配置，详见下文描述
-                    "type": 3, // 条件判断的类型
-                    "expression": "v[1] and v[2]", //type配置成了3，此字段指要对conditions做什么操作得出“条件判断”的结果值
-                    "conditions": [ //条件集合
+                "type": "URI",
+                "operator": "match",
+                "value": "/to_baidu"
+            }
+        ]
+    },
+    "extractor": {
+        "type": 2,
+        "extractions": [
+            {
+                "type": "Query",
+                "name": "search"
+            }
+        ]
+    },
+    "handle": {
+        "url_tmpl": "https://www.baidu.com/s?wd={{query.search}}",
+        "trim_qs": true,
+        "redirect_status": "301",
+        "log": true
+    },
+    "enable": true
+}
+```
+
+#### 返回结果
+
+```json
+{"msg":"succeed to create rule","success":true}
+```
+
+
+### 8) 修改规则
+
+#### 请求方式
+
+URI                 | Method | 说明
+------------------- | ------ | -----
+/redirect/selectors/:id/rules  | Put    | Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+
+
+#### 参数
+
+名称 | 类型 | 说明
+---- | ---- | -------
+selector_id | string | 此参数从URI里获取，即：id属性， 表示要修改的规则位于该选择器下
+rule | string | 该参数从form data表单里获取，指修改后的"规则"
+
+
+修改上文创建的规则, 增加一个判断条件，当这两个条件任一个为真是则跳转到baidu.com：
+
+```json
+{
+    "name": "将/to_baidu重定向到baidu.com",
+    "judge": {
+        "type": 2,
+        "conditions": [
+            {
+                "type": "URI",
+                "operator": "match",
+                "value": "/to_baidu"
+            },
+            {
+                "type": "Query",
+                "name": "to_baidu",
+                "operator": "=",
+                "value": "1"
+            }
+        ]
+    },
+    "extractor": {
+        "type": 2,
+        "extractions": [
+            {
+                "type": "Query",
+                "name": "search"
+            }
+        ]
+    },
+    "handle": {
+        "url_tmpl": "https://www.baidu.com/s?wd={{query.search}}",
+        "trim_qs": true,
+        "redirect_status": "301",
+        "log": true
+    },
+    "enable": true,
+    "id": "a6451360-efab-41e1-968b-dc95fb479c39"
+}
+```
+
+#### 返回结果
+
+```json
+{"msg":"ok","success":true}
+```
+
+### 9) 删除规则
+
+#### 请求方式
+
+URI                 | Method | 说明
+------------------- | ------ | -----
+/redirect/selectors/:id/rules    | Delete    | Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+
+
+#### 参数
+
+名称 | 类型 | 说明
+---- | ---- | -------
+selector_id | string | 此参数从URI里获取，即：id属性， 表示要删除的规则位于该选择器下
+rule_id | string | 指要删除的"规则"的id
+
+#### 返回结果
+
+```json
+{"msg":"succeed to delete rule","success":true}
+```
+
+
+
+### 10) 获取数据库中此插件的最新配置
+
+#### 请求方式
+
+URI                 | Method
+------------------- | ------
+/redirect/fetch_config | Get
+
+
+#### 参数
+
+无
+
+#### 返回结果
+
+```json
+{
+    "msg": "succeed to fetch config from store",
+    "data": {
+        "redirect.meta": {
+            "selectors": [
+                "1C4A9916-B3BD-4E95-8108-3FBCFF08BEBD"
+            ]
+        },
+        "redirect.enable": true,
+        "redirect.selectors": {
+            "1C4A9916-B3BD-4E95-8108-3FBCFF08BEBD": {
+                "enable": false,
+                "judge": [],
+                "rules": [
+                    "a6451360-efab-41e1-968b-dc95fb479c39"
+                ],
+                "handle": {
+                    "log": false,
+                    "continue": true
+                },
+                "type": 0,
+                "time": "2016-11-13 17:14:32",
+                "name": "全流量选择器",
+                "id": "1C4A9916-B3BD-4E95-8108-3FBCFF08BEBD"
+            }
+        },
+        "redirect.selector.1C4A9916-B3BD-4E95-8108-3FBCFF08BEBD.rules": [
+            {
+                "enable": true,
+                "handle": {
+                    "trim_qs": true,
+                    "redirect_status": "301",
+                    "url_tmpl": "https://www.baidu.com/s?wd={{query.search}}",
+                    "log": true
+                },
+                "id": "a6451360-efab-41e1-968b-dc95fb479c39",
+                "judge": {
+                    "type": 2,
+                    "conditions": [
                         {
                             "type": "URI",
                             "operator": "match",
-                            "value": "^/redirect_to$"
+                            "value": "/to_baidu"
                         },
                         {
-                            "type": "Header",
-                            "operator": "=",
-                            "name": "uid",
-                            "value": "12345"
-                        }
-                    ]
-                },
-                "time": "2016-06-21 14:50:27", //该规则创建或更新时间
-                "name": "redirect实例", //规则名称
-                "extractor": { // "变量提取模块"配置
-                    "extractions": [
-                        {// 提取Query String中的某个字段，这里为username
                             "type": "Query",
-                            "name": "username"
-                        },
-                        {// 提取Header头中的某个字段，这里为uid
-                            "type": "Header",
-                            "name": "uid"
-                        },
-                        {// 提取http请求的host，如baidu.com
-                            "type": "Host"
-                        },
-                        {// 从URI中提取变量，这里提取“/redirect_to/”后的字符串
-                            "type": "URI",
-                            "name": "/redirect_to/(.*)"
+                            "operator": "=",
+                            "name": "to_baidu",
+                            "value": "1"
                         }
                     ]
                 },
-                "handle": { // ”后续处理模块“配置
-                    "trim_qs": false, //是否需要清除原始请求的Query String
-                    "url_tmpl": "/to/${4}/${1}?uid=${2}&host=${3}", //要redirect到的URL模板，${number}指的是变量提取模块提取出的变量
-                    "log": false //是否记录此次规则匹配时的日志
+                "time": "2017-04-06 19:28:43",
+                "name": "将/to_baidu重定向到baidu.com",
+                "extractor": {
+                    "type": 2,
+                    "extractions": [
+                        {
+                            "type": "Query",
+                            "name": "search"
+                        }
+                    ]
                 }
             }
         ]
-    }
-}
-```
-
-- judge: 条件判断模块配置，一个请求经过此模块过滤后得出是否匹配该条规则的结果，然后才能进行之后的“变量提取”和“后续处理”两个模块，详见[条件判断模块](/docs/concept/judge)
-- extractor: 变量提取模块配置，如果不需要提取变量后续使用则可不配置。一个请求经过`judge`判断命中此条规则后，将通过变量提取模块提取需要的值，详见[变量提取器](/docs/concept/extraction)
-
-#### 3) 新建某条规则
-
-
-**请求**
-
-URI                 | Method | 说明
-------------------- | ------ | -----
-/redirect/configs    | Put    | Content-Type:application/x-www-form-urlencoded; charset=UTF-8
-
-
-**参数** 
-
-名称 | 类型 | 说明
----- | ---- | -------
-rule | string | 指一条"规则"json格式的字符串
-
-
-"规则"格式示例如下，具体格式可参考"获取所有配置"API中返回数据中的data.rules[0]格式:
-
-```
-{
-    "name": "redirect实例",
-    "judge": {
-        "type": 0,
-        "conditions": [
-            {
-                "type": "URI",
-                "operator": "match",
-                "value": "^/redirect_to$"
-            }
-        ]
     },
-    "extractor": {
-        "extractions": [
-            {
-                "type": "Query",
-                "name": "username"
-            },
-            {
-                "type": "Header",
-                "name": "uid"
-            },
-            {
-                "type": "Host"
-            },
-            {
-                "type": "URI",
-                "name": "/redirect_to/(.*)"
-            }
-        ]
-    },
-    "handle": {
-        "url_tmpl": "/to/${4}/${1}?uid=${2}&host=${3}",
-        "trim_qs": false,
-        "log": true
-    },
-    "enable": true
-}
-```
-
-**返回结果** 
-
-```
-{
-    "success": true,
-    "msg": "新建规则成功"
-}
-```
-
-#### 4) 编辑某条规则信息
-
-**请求**
-
-URI                 | Method | 说明
-------------------- | ------ | -----
-/redirect/configs    | Post    | Content-Type:application/x-www-form-urlencoded; charset=UTF-8
-
-
-**参数** 
-
-名称 | 类型 | 说明
----- | ---- | -------
-rule | string | 指修改后的"规则"
-
-
-"规则"格式示例如下:
-
-```
-{
-    "id": "3666DE3C-6202-4971-B277-1214AA1B9CA3",
-    "name": "跳转",
-    "judge": {
-        "type": 0,
-        "conditions": [
-            {
-                "type": "URI",
-                "operator": "match",
-                "value": "/abc"
-            }
-        ]
-    },
-    "extractor": {
-        "extractions": [
-            {
-                "type": "Query",
-                "name": "city"
-            }
-        ]
-    },
-    "handle": {
-        "url_tmpl": "/new_uri/${1}",
-        "trim_qs": false,
-        "log": true
-    },
-    "enable": true
-}
-```
-
-**返回结果** 
-
-```
-{
-    "success": true,
-    "msg": "修改成功"
-}
-```
-
-#### 5) 删除某条规则
-
-**请求**
-
-URI                 | Method | 说明
-------------------- | ------ | -----
-/redirect/configs    | Delete    | Content-Type:application/x-www-form-urlencoded; charset=UTF-8
-
-
-**参数** 
-
-名称 | 类型 | 说明
----- | ---- | -------
-rule_id | string | 指一条"规则"的id
-
-**返回结果** 
-
-```
-{
-    "success": true,
-    "msg": "删除成功"
+    "success": true
 }
 ```
 
 
 
-#### 6) 获取数据库中此插件的最新配置
-
-**请求**
-
-URI                 | Method 
-------------------- | ------ 
-/redirect/fetch_config       | Get    
+### 11) 将数据库中最新配置更新到此Orange节点
 
 
-**参数**   
-无
-
-**返回结果** 
-
-```
-{
-    "success": true,
-    "data": {
-        "enable": true, //是否开启了此插件
-        "rules": [] // 该插件包含的规则列表
-    }
-}
-```
-
-具体规则格式见以上API描述
-
-
-#### 7) 将数据库中最新配置更新到此orange节点
-
-
-**请求**
+#### 请求方式
 
 URI                 | Method | 说明
 ------------------- | ------ | -----
 /redirect/sync       | Post    | Content-Type:application/x-www-form-urlencoded; charset=UTF-8
 
-**参数**   
+#### 参数
+
 无
 
-**返回结果** 
+#### 返回结果
 
-```
-{
-    "success": true, //成功或失败
-    "msg": "" //描述信息
-}
+```json
+{"msg":"succeed to load config from store","success":true}
 ```
 

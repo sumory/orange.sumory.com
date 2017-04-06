@@ -1,13 +1,14 @@
 ---
 category: Guides
 redirect_from:
-    - /docs/v0.4.0/guides/about/
     - /docs/latest/guides/about/
 title: "关于Orange"
 sort_title: "1"
 ---
 
 欢迎使用Orange，使用过程中如碰到问题，请到[Github](https://github.com/sumory/orange/issues)进行提问。
+
+关于Orange的公开分享请参看[OpenResty Con 2016](http://con.openresty.org/cn/2016/)。
 
 
 ### 关于
@@ -24,8 +25,10 @@ Orange是一个基于OpenResty的API Gateway，提供API及自定义[规则](/do
     - URL重写
     - URI重定向
     - 访问限速
+    - Key based rate limiting
     - HTTP Basic Auth
     - HTTP Key Auth
+    - Signature Auth
     - 简单防火墙WAF
     - 代理、ABTesting、分流
     - Shared Dict存取接口
@@ -54,4 +57,5 @@ Orange采用MIT协议开源
 
 ### 其它
 
-Orange的插件设计参考了[Kong](https://getkong.org)，Kong是一个功能比较全面的API Gateway实现，推荐关注。
+- Orange的插件模式参考了[Kong](https://getkong.org)，Kong是一个功能比较全面的API Gateway实现，推荐关注。
+- Orange与Kong的不同(刨除基础设计，如存储、API)主要体现在针对"插件"和"API"的组织方式， Orange在流量筛选和变量提取方面相对来说更灵活一些。

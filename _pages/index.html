@@ -4,13 +4,12 @@ layout: default
 ---
 
   <script src="{{ site.baseurl }}/js/vendor/ua-parser-js-0.7.10.js"></script>
-  <script src="{{ site.baseurl }}/js/update-download-link.js"></script>
 
   <div class="jumbotron jumbotron-home text-center">
     <div class="container">
       {% include hero.html %}
-      <p class='jumbotron-lead'>A Gateway based on OpenResty or Nginx
-        <span class='jumbotron-lead-muted'>for API Monitoring and Management</span>
+      <p class='jumbotron-lead'>一个基于OpenResty / Nginx的HTTP API Gateway
+        <span class='jumbotron-lead-muted'></span>
       </p>
 
       <div class="banner-share"><!-- GitHub Star -->
@@ -24,57 +23,36 @@ layout: default
   <div class="subtron py-4 text-center">
     <div class="container">
       <div id="electron-versions" class="electron-versions">
-        <span class="electron-versions-main">Version: <strong>{{ site.latest_version }}</strong></span>
-        <span>Release Date: <strong>{{ site.release_date }}</strong></span>
+        <span class="electron-versions-main">版本: <strong>{{ site.latest_version }}</strong></span>
+        <span>发布日期: <strong>{{ site.release_date }}</strong></span>
       </div>
     </div>
   </div>
 
   <section class="page-section page-section-spacious">
-    <h2 id="feature-tip" class="text-center-sm">More features you will like</h2>
+    <h2 id="feature-tip" class="text-center-sm">丰富的特性支持</h2>
     <div class="container-narrow" id="feature-part">
       <div class="row text-center text-small" >
         <div class="col-xs-12 col-sm-3">
-          <h3 class="mb-2 mt-0">Default Dashboard & Open Source API</h3>
-          <p>A default Dashboard is given for management and all <strong>APIs</strong> are open source for building
-          3rd-party applications.</p>
+          <h3 class="mb-2 mt-0">Dashboard & 开放API</h3>
+          <p>默认提供了一个Dashboard用来管理Orange的所有插件数据.</p>
+          <p>Orange的所有插件均开放API，可用于实现更个性化的需求</p>
         </div>
         <div class="col-xs-12 col-sm-3">
-          <h3 class="mb-2 mt-0">Custom Plugin Support</h3>
-          <p>In addition to the built-in plugins, we can extend the functionality of Orange as we want with the plugin mechanism.</p>
+          <h3 class="mb-2 mt-0">支持自定义插件</h3>
+          <p>Orange提供了一套插件规范， 除使用本身提供的插件外，用户可按照规范开发自定义插件.</p>
         </div>
         <div class="col-xs-12 col-sm-3">
-          <h3 class="mb-2 mt-0">Traffic Identification & Variable Extraction</h3>
-          <p>Traffic can be recognised with more than 8 conditions. And a powerful means is offered to extract variables for later usage.</p>
+          <h3 class="mb-2 mt-0">流量筛选 & 变量提取</h3>
+          <p>Orange支持通过8类条件8种表达式进行筛选流量， 以做到更细粒度的流量控制.</p>
+          <p>此外， 可以通过两种方式提取请求里的各种变量用于后续处理.</p>
         </div>
         <div class="col-xs-12 col-sm-3">
-          <h3 class="mb-2 mt-0">Simple Cluster Support</h3>
-          <p>Orange nodes share config with MySQL. Besides, we can sufficiently utilize the API to manage all Orange nodes.</p>
+          <h3 class="mb-2 mt-0">集群支持</h3>
+          <p>Orange配置数据存储在MySQL， 运行时数据存储于SHM中.</p>
+          <p>用户可通过<strong>数据存储</strong>和<strong>API</strong>来实现多个节点的集群管理.</p>
         </div>
       </div>
     </div>
   </section>
 
-
-  <section class='page-section page-section-spacious bg-shade' id='get-started'>
-    <div class='container-narrow text-center'>
-      <h3 class="mb-3">Easy Installation and Usages</h3>
-      <figure class="highlight highlight-dark text-left my-4">
-<pre><code><span class="c1"># Clone the Quick Start repository</span>
-$ git clone https://github.com/sumory/orange
-
-<span class="c1"># Go into the repository</span>
-$ cd orange
-
-<span class="c1"># Install it, need version >= v0.5.0</span>
-$ make install 
-
-<span class="c1"># Check for usages, need version >= v0.5.0</span>
-$ orange help
-</code></pre>
-      </figure>
-   
-    </div>
-  </section>
-
-  

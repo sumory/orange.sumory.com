@@ -14,10 +14,10 @@ layout: default
 
 <div class='subtron'>
   <div class='container-narrow'>
-    <h1><span class="mr-3 mr-lg-4">Orange Documentation</span><span class="docs-version">{{ site.latest_version }}</span></h1>
-    <p class="lead mb-3">
+    <h1><span class="mr-3 mr-lg-4">Orange 使用文档</span><span class="docs-version">{{ site.latest_version }}</span></h1>
+    <!-- <p class="lead mb-3">
       See all of the <a href="{{ site.baseurl }}/docs/all/">docs on one page</a>.
-    </p>
+    </p> -->
   </div>
 </div>
 
@@ -27,7 +27,7 @@ layout: default
       <div class="row">
 
         <div class="col-ms-12 col-lg-4">
-          <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/guides/"><span class="mega-octicon octicon-book pr-3"></span>Guides</a></h2>
+          <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/guides/"><span class="mega-octicon octicon-book pr-3"></span>概况</a></h2>
           <ul class="docs-list">
           {% for doc in docs %}
             {% if doc.category == 'Guides' %}
@@ -39,7 +39,7 @@ layout: default
           </ul>
 
 
-          <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/concept/"><span class="mega-octicon octicon-book pr-3"></span>Concept</a></h2>
+          <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/concept/"><span class="mega-octicon octicon-gear pr-3"></span>Orange设计</a></h2>
           <ul class="docs-list">
           {% for doc in docs %}
             {% if doc.category == 'Concept' %}
@@ -52,8 +52,8 @@ layout: default
         </div>
 
         <div class="col-ms-12 col-lg-4">
-          <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/api/"><span class="mega-octicon octicon-gear pr-3"></span>API Reference</a></h2>
-            <h4>全局API</h4>
+          <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/api/"><span class="mega-octicon octicon-terminal pr-3"></span>API 描述</a></h2>
+            <h4 style="margin-bottom: 10px;">全局API</h4>
             <ul class="docs-list">
             {% for doc in docs %}
               {% if doc.category == 'API' and doc.flag == '1' %}
@@ -63,7 +63,7 @@ layout: default
               {% endif %}
             {% endfor %}
             </ul>
-            <h4>插件API</h4>
+            <h4 style="margin-bottom: 10px;">插件API</h4>
             <ul class="docs-list">
             {% for doc in docs %}
               {% if doc.category == 'API' and doc.flag == '2' %}
@@ -78,7 +78,7 @@ layout: default
         </div>
 
         <div class="col-ms-12 col-lg-4">
-          <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/advanced/"><span class="mega-octicon octicon-tools pr-3"></span>Advanced</a></h2>
+          <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/advanced/"><span class="mega-octicon octicon-tools pr-3"></span>高级</a></h2>
           <ul class="docs-list">
           {% for doc in docs %}
             {% if doc.category == 'Advanced' %}
@@ -90,7 +90,7 @@ layout: default
           {% endfor %}
           </ul>
 
-           <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/usages/"><span class="mega-octicon octicon-book pr-3"></span>Usage Examples</a></h2>
+           <h2 class="docs-heading pb-3 mb-3"><a class="docs-title" href="{{ site.baseurl }}/docs/usages/"><span class="mega-octicon octicon-tasklist pr-3"></span>使用示例</a></h2>
           <ul class="docs-list">
           {% for doc in docs %}
             {% if doc.category == 'Usages' %}

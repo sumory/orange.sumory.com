@@ -11,11 +11,11 @@
     <nav class="site-header-nav">
       {% capture first_segment %}{{ page.url | remove_first: "/" | split: "/" | first }}{% endcapture %}
 
-      <a class="site-header-nav-item {% if first_segment == 'install' %}active{% endif %}" href="{{ site.baseurl }}/install">Install</a>
+      <a class="site-header-nav-item {% if first_segment == 'install' %}active{% endif %}" href="{{ site.baseurl }}/install">安装</a>
 
-      <a class="site-header-nav-item {% if first_segment == 'docs' %}active{% endif %}" href="{{ site.baseurl }}/docs/">Docs</a>
-      <a class="site-header-nav-item {% if first_segment == 'blog' %}active{% endif %}" href="{{ site.baseurl }}/blog/">Blog</a>
-      <a class="site-header-nav-item {% if first_segment == 'releases' %}active{% endif %}" href="{{ site.baseurl }}/releases/">Releases</a>
+      <a class="site-header-nav-item {% if first_segment == 'docs' %}active{% endif %}" href="{{ site.baseurl }}/docs/">使用文档</a>
+      <a class="site-header-nav-item {% if first_segment == 'blog' %}active{% endif %}" href="{{ site.baseurl }}/blog/">博客</a>
+      <a class="site-header-nav-item {% if first_segment == 'releases' %}active{% endif %}" href="{{ site.baseurl }}/releases/">发布日志</a>
       <a class="site-header-nav-item" href="https://github.com/sumory/orange" title="Github Repository"><span class="mega-octicon octicon-mark-github vertical-middle"></span></a>
     </nav>
   </div>
