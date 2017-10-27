@@ -11,8 +11,8 @@ gems:
     - jekyll-seo-tag
     - jekyll-feed
     - jemoji
-latest_version: 0.6.3
-release_date: 2017.03.10
+latest_version: 0.6.4
+release_date: 2017.05.16
 sass:
     style: compressed
 available_versions:
@@ -25,6 +25,7 @@ available_versions:
     - v0.5.0
     - v0.6.0
     - v0.6.3
+    - v0.6.4
 collections:
     docs: {output: true, permalink: '/docs/:path/'}
 defaults:

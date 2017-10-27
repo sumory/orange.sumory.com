@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: https://gems.ruby-china.org/
   specs:
     activesupport (4.2.6)
       i18n (~> 0.7)
@@ -123,4 +123,4 @@ DEPENDENCIES
   github-pages
 
 BUNDLED WITH
-   1.12.5
+   1.15.4
